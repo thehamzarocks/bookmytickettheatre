@@ -23,6 +23,9 @@ public class TheatreService {
       return "Show not found";
     }
     List<Long> requestedSeats = bookShowRequest.getSeatsToBook();
+    if(requestedSeats.size() > 6) {
+      return "Cannot book more than 6 seats at a time";
+    }
     List<Seat> availableSeats = show.getSeats().stream().filter(seat -> {
       return "unassigned".equals(seat.getStatus()) && requestedSeats.contains(seat.id);
     }).collect(Collectors.toList());

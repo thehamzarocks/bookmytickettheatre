@@ -20,7 +20,7 @@ public class LoadDatabase {
 
   @Transactional
   public void createShowSeats() {
-    TheatreShow theatreShow = new TheatreShow("noon", "The Big Short", "Nice Movies Theatre", new ArrayList<>());
+    TheatreShow theatreShow = new TheatreShow("noon", 4L, 5L, new ArrayList<>());
     theatreShowRepository.save(theatreShow);
 
     List<Seat> seats = new ArrayList<>();
