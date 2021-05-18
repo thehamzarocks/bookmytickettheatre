@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.thehamzarocks.theatre;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 

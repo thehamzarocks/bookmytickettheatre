@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.thehamzarocks.theatre;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.awt.print.Book;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;

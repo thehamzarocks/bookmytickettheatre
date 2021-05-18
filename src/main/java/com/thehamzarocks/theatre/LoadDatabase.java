@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.thehamzarocks.theatre;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Configuration

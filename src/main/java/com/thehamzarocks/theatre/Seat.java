@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.thehamzarocks.theatre;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import java.awt.print.Book;
 
 @Entity
 public class Seat {

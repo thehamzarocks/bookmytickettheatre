@@ -1,12 +1,9 @@
-package com.example.demo;
+package com.thehamzarocks.theatre;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @RestController
 public class TheatreController {
