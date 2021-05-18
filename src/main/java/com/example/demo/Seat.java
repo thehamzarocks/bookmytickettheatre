@@ -6,23 +6,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.awt.print.Book;
 
 @Entity
 public class Seat {
 
   @Id @GeneratedValue Long id;
 
+  @JsonBackReference @ManyToOne Booking booking;
+
   private String name;
 
   private String status;
 
-  @ManyToOne
-  @JsonBackReference
-  private TheatreShow theatreShow;
+  @ManyToOne @JsonBackReference private TheatreShow theatreShow;
 
   public Seat() {}
 
-  public Seat(String name, String status, TheatreShow theatreShow) {
+  public Seat(Booking booking, String name, String status, TheatreShow theatreShow) {
+    this.booking = booking;
     this.name = name;
     this.status = status;
     this.theatreShow = theatreShow;
@@ -34,6 +36,14 @@ public class Seat {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public Booking getBooking() {
+    return booking;
+  }
+
+  public void setBooking(Booking booking) {
+    this.booking = booking;
   }
 
   public String getName() {
@@ -62,10 +72,6 @@ public class Seat {
 
   @Override
   public String toString() {
-    return "Seat{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            ", status='" + status + '\'' +
-            '}';
+    return "Seat{" + "id=" + id + ", name='" + name + '\'' + ", status='" + status + '\'' + '}';
   }
 }

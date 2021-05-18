@@ -25,7 +25,7 @@ public class LoadDatabase {
 
     List<Seat> seats = new ArrayList<>();
     IntStream.of(0, 1, 2).forEach(value -> {
-      Seat seat = new Seat(value + "A", "unassigned", theatreShow);
+      Seat seat = new Seat(null, value + "A", "unassigned", theatreShow);
       seatRepository.save(seat);
       theatreShow.getSeats().add(seat);
     });

@@ -4,39 +4,67 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.awt.print.Book;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
 public class TheatreService {
 
-  @Autowired
-  TheatreShowRepository theatreShowRepository;
+  @Autowired BookingRepository bookingRepository;
+  @Autowired TheatreShowRepository theatreShowRepository;
 
-  @Autowired
-  SeatRepository seatRepository;
+  @Autowired SeatRepository seatRepository;
 
   @Transactional
   public String bookShow(Long id, BookShowRequest bookShowRequest) {
     TheatreShow show = theatreShowRepository.findById(id).orElse(null);
-    if(show == null) {
+    if (show == null) {
       return "Show not found";
     }
     List<Long> requestedSeats = bookShowRequest.getSeatsToBook();
-    if(requestedSeats.size() > 6) {
+    if (requestedSeats.size() > 6) {
       return "Cannot book more than 6 seats at a time";
     }
-    List<Seat> availableSeats = show.getSeats().stream().filter(seat -> {
-      return "unassigned".equals(seat.getStatus()) && requestedSeats.contains(seat.id);
-    }).collect(Collectors.toList());
-    if(availableSeats.size() < requestedSeats.size()) {
+    List<Seat> availableSeats =
+        show.getSeats().stream()
+            .filter(
+                seat -> {
+                  return "unassigned".equals(seat.getStatus()) && requestedSeats.contains(seat.id);
+                })
+            .collect(Collectors.toList());
+    if (availableSeats.size() < requestedSeats.size()) {
       return "Requested seats not available";
     }
 
-    availableSeats.forEach(availableSeat -> {
-      availableSeat.setStatus("occupied");
-      seatRepository.save(availableSeat);
-    });
+    String otp = generateOtp();
+    Booking booking = new Booking(bookShowRequest.userName, otp, show);
+    booking.setSeats(availableSeats);
+    Booking booked = bookingRepository.save(booking);
+    availableSeats.forEach(
+        availableSeat -> {
+          availableSeat.setStatus("occupied");
+          availableSeat.setBooking(booked);
+          seatRepository.save(availableSeat);
+        });
+
     return "Booked!";
+  }
+
+  private String generateOtp() {
+    int leftLimit = 48; // numeral '0'
+    int rightLimit = 122; // letter 'z'
+    int targetStringLength = 10;
+    Random random = new Random();
+
+    String generatedString =
+        random
+            .ints(leftLimit, rightLimit + 1)
+            .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+            .limit(targetStringLength)
+            .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+            .toString();
+    return generatedString;
   }
 }
