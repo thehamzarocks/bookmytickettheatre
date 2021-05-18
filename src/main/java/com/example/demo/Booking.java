@@ -12,7 +12,7 @@ public class Booking {
   String OTP;
   @OneToOne TheatreShow theatreShow;
 
-  @OneToMany @JsonManagedReference List<Seat> seats;
+  @OneToMany @JsonManagedReference(value = "booking-seat") List<Seat> seats;
 
   public Booking() {}
 

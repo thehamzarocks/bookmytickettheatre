@@ -18,7 +18,7 @@ public class TheatreShow {
   private Long movieId;
 
   @OneToMany(mappedBy = "theatreShow")
-  @JsonManagedReference
+  @JsonManagedReference (value = "theatreshow-seat")
   private List<Seat> seats;
 
   public TheatreShow() {}

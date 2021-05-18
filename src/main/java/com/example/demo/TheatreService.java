@@ -1,8 +1,11 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import java.awt.print.Book;
 import java.util.List;
@@ -11,11 +14,17 @@ import java.util.stream.Collectors;
 
 @Service
 public class TheatreService {
+  @Bean
+  public RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder) {
+    return restTemplateBuilder.build();
+  }
 
   @Autowired BookingRepository bookingRepository;
   @Autowired TheatreShowRepository theatreShowRepository;
 
   @Autowired SeatRepository seatRepository;
+
+  @Autowired RestTemplate restTemplate;
 
   @Transactional
   public String bookShow(Long id, BookShowRequest bookShowRequest) {
@@ -50,6 +59,11 @@ public class TheatreService {
         });
 
     return "Booked!";
+  }
+
+  public String addShowsToBookMyTicket(List<TheatreShow> addShowsRequest) {
+    restTemplate.postForObject("http://localhost:8080/shows", addShowsRequest, String.class);
+    return "Success!";
   }
 
   private String generateOtp() {

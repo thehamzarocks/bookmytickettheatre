@@ -27,9 +27,14 @@ public class TheatreController {
     return theatreShowRepository.findById(showId).orElseThrow();
   }
 
-  @PostMapping("/show/{id}")
+  @PostMapping("/booking/{id}")
   public String bookShow(@PathVariable("id") Long showId, @RequestBody BookShowRequest bookShowRequest) {
     return theatreService.bookShow(showId, bookShowRequest);
+  }
+
+  @PostMapping("/shows")
+  public String addShows(@RequestBody List<TheatreShow> addShowsRequest) {
+    return theatreService.addShowsToBookMyTicket(addShowsRequest);
   }
 
 }

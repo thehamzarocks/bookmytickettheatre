@@ -13,13 +13,13 @@ public class Seat {
 
   @Id @GeneratedValue Long id;
 
-  @JsonBackReference @ManyToOne Booking booking;
+  @JsonBackReference(value = "booking-seat") @ManyToOne Booking booking;
 
   private String name;
 
   private String status;
 
-  @ManyToOne @JsonBackReference private TheatreShow theatreShow;
+  @ManyToOne @JsonBackReference(value = "theatreshow-seat") private TheatreShow theatreShow;
 
   public Seat() {}
 
