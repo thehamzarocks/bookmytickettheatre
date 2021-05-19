@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -50,7 +48,14 @@ public class BookShowTest {
     availableSeats.add(seat2);
 
     when(theatreShowRepository.findById(any()))
-        .thenReturn(Optional.of(new TheatreShow("morning", 5L, 7L, availableSeats)));
+        .thenReturn(
+            Optional.of(
+                new TheatreShow(
+                    "morning",
+                    new GregorianCalendar(2021, Calendar.MAY, 28).getTime(),
+                    5L,
+                    7L,
+                    availableSeats)));
     String response =
         theatreService.bookShow(5L, new BookShowRequest(5L, "Jill", List.of(10L, 312L), false));
     assertEquals("Requested seats not available", response);

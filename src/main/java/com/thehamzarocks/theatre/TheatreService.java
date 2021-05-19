@@ -57,7 +57,7 @@ public class TheatreService {
           seatRepository.save(availableSeat);
         });
 
-    return "Booked!";
+    return "Booked, OTP: " + otp;
   }
 
   public String addShowsToBookMyTicket(List<TheatreShow> addShowsRequest) {

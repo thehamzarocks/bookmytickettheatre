@@ -6,8 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.IntStream;
 
 @Configuration
@@ -19,7 +18,7 @@ public class LoadDatabase {
 
   @Transactional
   public void createShowSeats() {
-    TheatreShow theatreShow = new TheatreShow("noon", 4L, 5L, new ArrayList<>());
+    TheatreShow theatreShow = new TheatreShow("noon", new GregorianCalendar(2021, Calendar.MAY, 25).getTime(), 4L, 5L, new ArrayList<>());
     theatreShowRepository.save(theatreShow);
 
     List<Seat> seats = new ArrayList<>();
