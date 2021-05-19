@@ -24,14 +24,23 @@ public class LoadDatabase {
 
   @Transactional
   public void createShowSeats() {
-    TheatreShow theatreShow = new TheatreShow("noon", new GregorianCalendar(2021, Calendar.MAY, 25).getTime(), 4L, 5L, new ArrayList<>());
-    theatreShowRepository.save(theatreShow);
+    TheatreShow theBigShortNoonShow = new TheatreShow("noon", new GregorianCalendar(2021, Calendar.MAY, 25).getTime(), 4L, 6L, new ArrayList<>());
+    theatreShowRepository.save(theBigShortNoonShow);
 
-    List<Seat> seats = new ArrayList<>();
+    TheatreShow timeMovieNoonShow = new TheatreShow("noon", new GregorianCalendar(2021, Calendar.MAY, 25).getTime(), 4L, 7L, new ArrayList<>());
+    theatreShowRepository.save(timeMovieNoonShow);
+
     IntStream.of(0, 1, 2).forEach(value -> {
-      Seat seat = new Seat(null, value + "A", "unassigned", theatreShow);
+      Seat seat = new Seat(null, value + "A", "unassigned", theBigShortNoonShow);
       seatRepository.save(seat);
-      theatreShow.getSeats().add(seat);
+      theBigShortNoonShow.getSeats().add(seat);
+    });
+
+    List<Seat> timeMovieSeats = new ArrayList<>();
+    IntStream.of(0, 1, 2, 3, 4).forEach(value -> {
+      Seat seat = new Seat(null, value + "Q", "unassigned", timeMovieNoonShow);
+      seatRepository.save(seat);
+      timeMovieNoonShow.getSeats().add(seat);
     });
   }
 
