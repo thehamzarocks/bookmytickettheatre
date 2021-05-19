@@ -1,11 +1,18 @@
 package com.thehamzarocks.theatre;
 
+import com.thehamzarocks.theatre.dto.BookShowRequest;
+import com.thehamzarocks.theatre.entity.Booking;
+import com.thehamzarocks.theatre.entity.Seat;
+import com.thehamzarocks.theatre.entity.TheatreShow;
+import com.thehamzarocks.theatre.repository.BookingRepository;
+import com.thehamzarocks.theatre.repository.SeatRepository;
+import com.thehamzarocks.theatre.repository.TheatreShowRepository;
+import com.thehamzarocks.theatre.service.TheatreService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 import static org.junit.Assert.assertEquals;
 
@@ -17,12 +24,16 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class BookShowTest {
 
-  @InjectMocks TheatreService theatreService;
+  @InjectMocks
+  TheatreService theatreService;
 
-  @Mock BookingRepository bookingRepository;
-  @Mock TheatreShowRepository theatreShowRepository;
+  @Mock
+  BookingRepository bookingRepository;
+  @Mock
+  TheatreShowRepository theatreShowRepository;
 
-  @Mock SeatRepository seatRepository;
+  @Mock
+  SeatRepository seatRepository;
 
   @Mock RestTemplate restTemplate;
 

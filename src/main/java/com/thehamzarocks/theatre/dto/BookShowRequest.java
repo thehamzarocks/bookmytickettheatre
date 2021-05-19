@@ -1,4 +1,4 @@
-package com.thehamzarocks.theatre;
+package com.thehamzarocks.theatre.dto;
 
 import java.util.List;
 

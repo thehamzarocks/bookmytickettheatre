@@ -1,4 +1,4 @@
-package com.thehamzarocks.theatre;
+package com.thehamzarocks.theatre.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -12,7 +12,8 @@ public class Seat {
 
   @Id @GeneratedValue Long id;
 
-  @JsonBackReference(value = "booking-seat") @ManyToOne Booking booking;
+  @JsonBackReference(value = "booking-seat") @ManyToOne
+  Booking booking;
 
   private String name;
 

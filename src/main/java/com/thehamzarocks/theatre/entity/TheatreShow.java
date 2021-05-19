@@ -1,6 +1,7 @@
-package com.thehamzarocks.theatre;
+package com.thehamzarocks.theatre.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.thehamzarocks.theatre.entity.Seat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package com.thehamzarocks.theatre;
+package com.thehamzarocks.theatre.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -10,7 +10,8 @@ public class Booking {
   @Id @GeneratedValue Long id;
   String userName;
   String OTP;
-  @OneToOne TheatreShow theatreShow;
+  @OneToOne
+  TheatreShow theatreShow;
 
   @OneToMany @JsonManagedReference(value = "booking-seat") List<Seat> seats;
 

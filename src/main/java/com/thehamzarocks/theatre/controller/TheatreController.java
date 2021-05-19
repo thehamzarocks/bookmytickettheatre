@@ -1,5 +1,9 @@
-package com.thehamzarocks.theatre;
+package com.thehamzarocks.theatre.controller;
 
+import com.thehamzarocks.theatre.service.TheatreService;
+import com.thehamzarocks.theatre.entity.TheatreShow;
+import com.thehamzarocks.theatre.repository.TheatreShowRepository;
+import com.thehamzarocks.theatre.dto.BookShowRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

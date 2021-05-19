@@ -1,5 +1,9 @@
-package com.thehamzarocks.theatre;
+package com.thehamzarocks.theatre.configuration;
 
+import com.thehamzarocks.theatre.entity.Seat;
+import com.thehamzarocks.theatre.repository.SeatRepository;
+import com.thehamzarocks.theatre.entity.TheatreShow;
+import com.thehamzarocks.theatre.repository.TheatreShowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -12,9 +16,11 @@ import java.util.stream.IntStream;
 @Configuration
 public class LoadDatabase {
 
-  @Autowired TheatreShowRepository theatreShowRepository;
+  @Autowired
+  TheatreShowRepository theatreShowRepository;
 
-  @Autowired SeatRepository seatRepository;
+  @Autowired
+  SeatRepository seatRepository;
 
   @Transactional
   public void createShowSeats() {

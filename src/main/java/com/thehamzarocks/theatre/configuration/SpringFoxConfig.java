@@ -1,4 +1,4 @@
-package com.thehamzarocks.theatre;
+package com.thehamzarocks.theatre.configuration;
 
 import com.fasterxml.classmate.TypeResolver;
 import org.springframework.beans.factory.annotation.Autowired;
